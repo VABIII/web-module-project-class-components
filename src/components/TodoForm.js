@@ -1,5 +1,5 @@
 import React from "react";
-import {handleInput} from "concurrently/src/defaults";
+
 
 class TodoForm extends React.Component {
     constructor() {
@@ -14,14 +14,23 @@ class TodoForm extends React.Component {
             ...this.state,
                 input: evt.target.value
         })
-
     }
 
+    onSubmit = evt => {
+        evt.preventDefault();
+        this.props.addTodo(this.state.input)
+    }
+
+    onClick = () => {
+        this.props.clearAll()
+    }
+
+
     render(){
-        console.log(this.state.input)
+        console.log(this.props)
         return(
             <div>
-                <form>
+                <form onSubmit={this.onSubmit}>
                     <label htmlFor="todoInput">Add new Todo:&nbsp;</label>
                     <input
                         type="text"
@@ -30,11 +39,10 @@ class TodoForm extends React.Component {
                     />
                     <button>submit</button>
                 </form>
-                <button>Clear all</button>
+                <button onClick={this.onClick}>Clear all</button>
             </div>
         )
     }
-
 }
 
 
