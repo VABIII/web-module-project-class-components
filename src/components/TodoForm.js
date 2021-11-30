@@ -19,12 +19,14 @@ class TodoForm extends React.Component {
     onSubmit = evt => {
         evt.preventDefault();
         this.props.addTodo(this.state.input)
+        this.setState({
+            input:""
+        })
     }
 
     onClick = () => {
         this.props.clearAll()
     }
-
 
     render(){
         console.log(this.props)
@@ -35,6 +37,7 @@ class TodoForm extends React.Component {
                     <input
                         type="text"
                         name="todoInput"
+                        value={this.state.input}
                         onChange={this.handleInput}
                     />
                     <button>submit</button>
@@ -44,7 +47,6 @@ class TodoForm extends React.Component {
         )
     }
 }
-
 
 export default TodoForm;
 
